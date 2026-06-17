@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultura Motorsport — Oltre la competizione.</title>
+  <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --green: #436a38;
+      --green-light: #5a8a4e;
+      --white: #ffffff;
+      --grey-dark: #0a0a0a;
+      --grey: #111111;
+      --grey-mid: #1a1a1a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'STIX Two Text', Georgia, serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3 { font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    p { font-weight: 400; line-height: 1.75; }
+
+    .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 400;
+    }
+
+    /* ─── LOGO ─── */
+    .logo-group {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+    .logo-img-footer {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%);
+      transition: background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(0,0,0,0.96);
+      border-bottom: 1px solid rgba(67,106,56,0.2);
+    }
+
+    .nav-cta {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-family: 'STIX Two Text', serif;
+    }
+    .nav-cta:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142835_416a3b79-b8a3-4d03-98e0-5a302ea4ddb5.png');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.05);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.1) 40%,
+        rgba(0,0,0,0.7) 75%,
+        rgba(0,0,0,1) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 40px 80px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 8px;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+    .hero-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      line-height: 1.8;
+      letter-spacing: 0.03em;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 2;
+      opacity: 0.5;
+    }
+    .hero-scroll span {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--green), transparent);
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 100px 40px;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-header {
+      margin-bottom: 60px;
+    }
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-top: 12px;
+      line-height: 1.1;
+    }
+
+    /* ─── MANIFESTO ─── */
+    #manifesto {
+      background: var(--grey-dark);
+      border-top: 1px solid rgba(67,106,56,0.2);
+      border-bottom: 1px solid rgba(67,106,56,0.2);
+    }
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .manifesto-text h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+    .manifesto-text h2 em {
+      color: var(--green);
+      font-style: italic;
+    }
+    .manifesto-text p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+    .manifesto-image {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .manifesto-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) contrast(1.1);
+    }
+    .manifesto-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(67,106,56,0.3);
+      pointer-events: none;
+    }
+
+    /* ─── VALORI ─── */
+    #valori {
+      background: var(--black);
+    }
+    .valori-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+    .valore-card {
+      background: var(--grey-mid);
+      padding: 48px 36px;
+      border-top: 2px solid var(--green);
+      transition: background 0.3s;
+    }
+    .valore-card:hover { background: #1f1f1f; }
+    .valore-num {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--green);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .valore-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      letter-spacing: 0.12em;
+    }
+    .valore-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+    }
+
+    /* ─── PILOTA ─── */
+    #pilota {
+      background: var(--grey-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #pilota::before {
+      content: 'MIRKO';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(8rem, 18vw, 16rem);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: rgba(67,106,56,0.04);
+      text-transform: uppercase;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .pilota-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .pilota-image {
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      position: relative;
+    }
+    .pilota-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) contrast(1.15) grayscale(15%);
+    }
+    .pilota-image::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--green);
+      z-index: 2;
+    }
+    .pilota-info { position: relative; z-index: 1; }
+    .pilota-number {
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 600;
+      color: rgba(67,106,56,0.2);
+      line-height: 1;
+      margin-bottom: -10px;
+    }
+    .pilota-name {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .pilota-car {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .pilota-bio {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.85;
+      margin-bottom: 40px;
+    }
+    .pilota-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .stat {
+      border-top: 1px solid rgba(67,106,56,0.3);
+      padding-top: 16px;
+    }
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+    }
+
+    /* ─── PROSSIMA GARA ─── */
+    #gara {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .gara-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142845_6c2285ab-82df-4240-a45b-9709187fd273.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      filter: grayscale(40%);
+    }
+    .gara-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .gara-event {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(67,106,56,0.25);
+      padding: 60px;
+      backdrop-filter: blur(10px);
+    }
+    .gara-edition {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .gara-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .gara-details {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .gara-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .gara-detail-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+    }
+    .gara-detail-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .gara-date-block {
+      text-align: center;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(67,106,56,0.25);
+      padding-left: 60px;
+    }
+    .gara-day {
+      font-size: clamp(4rem, 7vw, 6rem);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--white);
+    }
+    .gara-month {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    /* ─── PARTNER ─── */
+    #partner {
+      background: var(--grey-dark);
+    }
+    .partner-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .partner-left h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      margin-top: 16px;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+    .partner-left p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .partner-tiers-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .tier-mini {
+      background: var(--grey-mid);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-left: 3px solid transparent;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .tier-mini:hover, .tier-mini.active {
+      border-left-color: var(--green);
+      background: #1f1f1f;
+    }
+    .tier-mini.active { border-left-color: var(--green); }
+    .tier-mini-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .tier-mini-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    /* FORM */
+    .partner-form {
+      background: var(--grey-mid);
+      padding: 48px;
+      border-top: 2px solid var(--green);
+    }
+    .form-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .form-subtitle {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 36px;
+      letter-spacing: 0.05em;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      font-family: 'STIX Two Text', serif;
+    }
+    input, select, textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      font-family: 'STIX Two Text', serif;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--green);
+      background: rgba(67,106,56,0.05);
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+    select option {
+      background: var(--grey-mid);
+      color: var(--white);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .form-tier-select {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tier-radio {
+      display: none;
+    }
+    .tier-radio-label {
+      display: block;
+      padding: 12px 8px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'STIX Two Text', serif;
+      color: rgba(255,255,255,0.5);
+    }
+    .tier-radio:checked + .tier-radio-label {
+      border-color: var(--green);
+      background: rgba(67,106,56,0.15);
+      color: var(--white);
+    }
+    .form-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      padding: 18px 36px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'STIX Two Text', serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: #5a8a4e; }
+    .form-note {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.25);
+      margin-top: 16px;
+      line-height: 1.6;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .partner-layout { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-tier-select { grid-template-columns: 1fr; }
+      .partner-form { padding: 28px 20px; }
+    }
+
+    /* ─── GALLERY STRIP ─── */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 280px;
+      overflow: hidden;
+    }
+    .gallery-strip-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7) grayscale(20%) contrast(1.1);
+      transition: transform 0.6s ease, filter 0.4s;
+    }
+    .gallery-strip-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.9) grayscale(0%) contrast(1.1);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(67,106,56,0.2);
+      padding: 60px 40px 40px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 60px;
+    }
+    .footer-tagline {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.35);
+      margin-top: 12px;
+      font-style: italic;
+    }
+    .footer-links {
+      display: flex;
+      gap: 40px;
+    }
+    .footer-col h4 {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-green-line {
+      width: 60px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    /* ─── DIVIDER ─── */
+    .green-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--green), transparent);
+      opacity: 0.3;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      section { padding: 70px 20px; }
+      .hero-content { padding: 0 20px 60px; }
+      .manifesto-grid,
+      .pilota-grid,
+      .gara-event { grid-template-columns: 1fr; gap: 40px; }
+      .valori-grid,
+      .partner-tiers { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); height: 400px; }
+      .gara-date-block { border-left: none; border-top: 1px solid rgba(67,106,56,0.25); padding: 30px 0 0; }
+      .gara-event { padding: 36px; }
+      .footer-top { flex-direction: column; gap: 40px; }
+      .footer-links { flex-direction: column; gap: 24px; }
+      .pilota-stats { grid-template-columns: repeat(3, 1fr); }
+      #pilota::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="logo-group">
+      <img src="logo/1Cultura Motorsport Logo 2026.png" alt="Cultura Motorsport" class="logo-img"/>
+    </a>
+    <a href="#partner" class="nav-cta">Diventa Partner</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">CIVM — Campionato Italiano Velocità in Montagna</p>
+      <h1 class="hero-title">Cultura<br>Motorsport</h1>
+      <p class="hero-subtitle">Oltre la competizione.</p>
+      <p class="hero-desc">Passione, identità e cultura nel motorsport italiano. Non solo gare — un progetto che racconta la velocità come linguaggio, la montagna come palcoscenico.</p>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <div class="green-divider"></div>
+
+  <!-- MANIFESTO -->
+  <section id="manifesto">
+    <div class="section-inner">
+      <div class="manifesto-grid">
+        <div class="manifesto-text">
+          <p class="label">Il Progetto</p>
+          <h2>Non solo velocità.<br><em>Una cultura.</em></h2>
+          <p>Cultura Motorsport nasce dall'idea che il motorsport sia qualcosa di più di una competizione. È identità, è comunità, è il modo in cui un pilota e la sua macchina dialogano con la montagna.</p>
+          <p>Corriamo nel Campionato Italiano Velocità in Montagna — le strade asfaltate delle nostre Apennini trasformate in palcoscenici di passione pura.</p>
+          <p style="color: var(--green); margin-top: 24px; font-style: italic; font-size: 1.05rem;">"Oltre la competizione."</p>
+        </div>
+        <div class="manifesto-image">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142843_4aa67c88-99c4-4864-94bc-b459806cc884.png" alt="Cultura Motorsport in azione" loading="lazy"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="green-divider"></div>
+
+  <!-- VALORI -->
+  <section id="valori">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="label">La nostra essenza</p>
+        <h2>Tre parole.<br>Un progetto.</h2>
+      </div>
+      <div class="valori-grid">
+        <div class="valore-card">
+          <span class="valore-num">01</span>
+          <h3>Passione</h3>
+          <p>La cronoscalata non è uno sport per chi cerca la comodità. È una scelta radicale — svegliarsi all'alba, salire in montagna, dare tutto su strade che non perdonano.</p>
+        </div>
+        <div class="valore-card">
+          <span class="valore-num">02</span>
+          <h3>Identità</h3>
+          <p>Ogni pilota, ogni squadra porta la propria storia sulla strada. Cultura Motorsport è il racconto di chi siamo — non solo di come corriamo.</p>
+        </div>
+        <div class="valore-card">
+          <span class="valore-num">03</span>
+          <h3>Cultura</h3>
+          <p>Il motorsport come linguaggio culturale. La montagna come teatro. La velocità come forma d'arte. Questo è ciò che costruiamo oltre il cronometro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <div class="gallery-strip">
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122224_b22efc68-6da9-4124-9bdd-ce3c8fa05ba9.png" alt="" loading="lazy"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122835_c4bf0fe8-0cc6-4a52-b51c-eb9a97f63e6c.png" alt="" loading="lazy"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_102033_19f566f1-78d5-425e-a225-4182e040a491.png" alt="" loading="lazy"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122833_43659c43-a3c6-4762-9611-8ab475b24c21.png" alt="" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="green-divider"></div>
+
+  <!-- PILOTA -->
+  <section id="pilota">
+    <div class="section-inner">
+      <div class="pilota-grid">
+        <div class="pilota-image">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_123003_87ee268f-cbfa-4eae-be9c-148123c30ecf.png" alt="Mirko Tiburzi" loading="lazy"/>
+        </div>
+        <div class="pilota-info">
+          <p class="label">Il Pilota</p>
+          <p class="pilota-number">#___</p>
+          <h2 class="pilota-name">Mirko<br>Tiburzi</h2>
+          <p class="pilota-car">Peugeot 106 S16 · CIVM 2026</p>
+          <p class="pilota-bio">Mirko Tiburzi è il volto in pista di Cultura Motorsport per la stagione 2026. Al volante della Peugeot 106, porta sulle strade di montagna italiane un approccio che unisce tecnica e carattere — dove ogni curva è una firma.</p>
+          <div class="pilota-stats">
+            <div class="stat">
+              <div class="stat-value">2026</div>
+              <div class="stat-label">Stagione</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">CIVM</div>
+              <div class="stat-label">Campionato</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">106</div>
+              <div class="stat-label">Peugeot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="green-divider"></div>
+
+  <!-- PROSSIMA GARA -->
+  <section id="gara" style="padding: 100px 40px;">
+    <div class="gara-bg"></div>
+    <div class="gara-inner">
+      <div class="section-header" style="position: relative; z-index: 1;">
+        <p class="label">Calendario 2026</p>
+        <h2>Prossima Gara</h2>
+      </div>
+      <div class="gara-event">
+        <div class="gara-info">
+          <p class="gara-edition">65ª Edizione</p>
+          <h3 class="gara-title">Coppa Paolino<br>Teodori</h3>
+          <div class="gara-details">
+            <div class="gara-detail">
+              <span class="gara-detail-label">Luogo</span>
+              <span class="gara-detail-value">Ascoli Piceno</span>
+            </div>
+            <div class="gara-detail">
+              <span class="gara-detail-label">Campionato</span>
+              <span class="gara-detail-value">CIVM 2026</span>
+            </div>
+            <div class="gara-detail">
+              <span class="gara-detail-label">Pilota</span>
+              <span class="gara-detail-value">Mirko Tiburzi</span>
+            </div>
+            <div class="gara-detail">
+              <span class="gara-detail-label">Auto</span>
+              <span class="gara-detail-value">Peugeot 106</span>
+            </div>
+          </div>
+        </div>
+        <div class="gara-date-block">
+          <p class="gara-month">Giugno 2026</p>
+          <p class="gara-day">28</p>
+          <p class="gara-month">Domenica</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="green-divider"></div>
+
+  <!-- PARTNER -->
+  <section id="partner">
+    <div class="partner-layout">
+
+      <!-- SINISTRA: info tiers -->
+      <div class="partner-left">
+        <p class="label">Partnership</p>
+        <h2>Diventa Parte<br>del Progetto</h2>
+        <p>Cultura Motorsport è un progetto in crescita — visibilità autentica, contenuti cinematici di qualità e una community appassionata. Associa il tuo brand a una storia vera.</p>
+        <div class="partner-tiers-mini">
+          <div class="tier-mini">
+            <div>
+              <div class="tier-mini-name">Supporter</div>
+              <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:4px;">Logo social · Menzione · Paddock</div>
+            </div>
+            <span class="tier-mini-tag">Tier 1</span>
+          </div>
+          <div class="tier-mini active">
+            <div>
+              <div class="tier-mini-name">Official Partner</div>
+              <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:4px;">Livrea · Contenuti · Tutti gli eventi</div>
+            </div>
+            <span class="tier-mini-tag">Tier 2</span>
+          </div>
+          <div class="tier-mini">
+            <div>
+              <div class="tier-mini-name">Title Sponsor</div>
+              <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:4px;">Naming · Co-brand · Attivazioni custom</div>
+            </div>
+            <span class="tier-mini-tag">Tier 3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESTRA: form -->
+      <div class="partner-form">
+        <p class="form-title">Richiesta di Partnership</p>
+        <p class="form-subtitle">Compila il form — ti risponderemo entro 48 ore.</p>
+
+        <form action="#" method="POST" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="nome">Nome e Cognome *</label>
+            <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required/>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="mario@azienda.it" required/>
+          </div>
+
+          <div class="form-group">
+            <label for="azienda">Azienda / Brand</label>
+            <input type="text" id="azienda" name="azienda" placeholder="Nome dell'azienda"/>
+          </div>
+
+          <div class="form-group">
+            <label for="messaggio">Come possiamo collaborare?</label>
+            <textarea id="messaggio" name="messaggio" placeholder="Raccontaci brevemente il tuo brand e cosa ti interessa..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Invia Richiesta →</button>
+          <p class="form-note">Risponderemo entro 48 ore lavorative.</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP 2 -->
+  <div class="gallery-strip">
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_123014_b1fb1749-6513-4bc9-894d-1615e2f65b87.png" alt="" loading="lazy"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122829_0ea8e10f-e8ec-4af8-bdc8-2908c37f086e.png" alt="" loading="lazy"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142834_60875fa3-b9f7-48a6-9969-f3a30dc6a25c.png" alt="" loading="lazy"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122822_9e3ad44d-2473-467a-af04-f8dd501a53d0.png" alt="" loading="lazy"/>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="#" class="logo-group">
+            <img src="logo/1Cultura Motorsport Logo 2026.png" alt="Cultura Motorsport" class="logo-img-footer"/>
+          </a>
+          <p class="footer-tagline">Oltre la competizione.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Progetto</h4>
+            <a href="#manifesto">Chi siamo</a>
+            <a href="#valori">I valori</a>
+            <a href="#pilota">Il pilota</a>
+            <a href="#gara">Calendario</a>
+          </div>
+          <div class="footer-col">
+            <h4>Partnership</h4>
+            <a href="#partner">Diventa partner</a>
+            <a href="mailto:info@culturamotorsport.it">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <h4>Social</h4>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Cultura Motorsport. Tutti i diritti riservati.</p>
+        <div class="footer-green-line"></div>
+        <p class="footer-copy">CIVM · Gare di cronoscalata su asfalto</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Hero bg subtle animation
+    const heroBg = document.getElementById('heroBg');
+    setTimeout(() => heroBg.classList.add('loaded'), 100);
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Richiesta inviata ✓';
+      btn.style.background = '#2d4a26';
+      btn.disabled = true;
+    }
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.valore-card, .tier-card, .gara-event, .pilota-grid').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
