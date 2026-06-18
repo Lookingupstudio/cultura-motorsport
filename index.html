@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultura Motorsport — Oltre la competizione.</title>
-  <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net">
+  <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142835_416a3b79-b8a3-4d03-98e0-5a302ea4ddb5_min.webp">
   <style>
     :root {
       --black: #000000;
@@ -103,7 +107,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142835_416a3b79-b8a3-4d03-98e0-5a302ea4ddb5.png');
+      background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142835_416a3b79-b8a3-4d03-98e0-5a302ea4ddb5_min.webp');
       background-size: cover;
       background-position: center 30%;
       transform: scale(1.05);
@@ -384,7 +388,7 @@
     .gara-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142845_6c2285ab-82df-4240-a45b-9709187fd273.png');
+      background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142845_6c2285ab-82df-4240-a45b-9709187fd273_min.webp');
       background-size: cover;
       background-position: center;
       opacity: 0.15;
@@ -736,21 +740,67 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      section { padding: 70px 20px; }
-      .hero-content { padding: 0 20px 60px; }
+      /* Nav */
+      nav { padding: 14px 20px; }
+      .logo-img { height: 28px; }
+      .nav-cta { padding: 8px 14px; font-size: 0.6rem; }
+
+      /* Sections */
+      section { padding: 56px 20px; }
+      .section-inner { max-width: 100%; }
+
+      /* Hero */
+      .hero-content { padding: 0 20px 56px; }
+      .hero-title { font-size: 2.8rem; letter-spacing: 0.06em; }
+      .hero-subtitle { font-size: 1.1rem; }
+      .hero-desc { font-size: 0.88rem; }
+      .hero-scroll { display: none; }
+
+      /* Grids → colonna singola */
       .manifesto-grid,
-      .pilota-grid,
-      .gara-event { grid-template-columns: 1fr; gap: 40px; }
-      .valori-grid,
-      .partner-tiers { grid-template-columns: 1fr; }
-      .gallery-strip { grid-template-columns: repeat(2, 1fr); height: 400px; }
-      .gara-date-block { border-left: none; border-top: 1px solid rgba(67,106,56,0.25); padding: 30px 0 0; }
-      .gara-event { padding: 36px; }
-      .footer-top { flex-direction: column; gap: 40px; }
-      .footer-links { flex-direction: column; gap: 24px; }
-      .pilota-stats { grid-template-columns: repeat(3, 1fr); }
+      .pilota-grid { grid-template-columns: 1fr; gap: 32px; }
+      .manifesto-image { aspect-ratio: 16/9; }
+      .pilota-image { aspect-ratio: 4/3; }
+      .valori-grid { grid-template-columns: 1fr; gap: 2px; }
+      .valore-card { padding: 32px 24px; }
+
+      /* Gallery strip: 2 colonne */
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); height: 200px; }
+
+      /* Gara */
+      .gara-event { grid-template-columns: 1fr; gap: 32px; padding: 28px 24px; }
+      .gara-date-block { border-left: none; border-top: 1px solid rgba(67,106,56,0.25); padding: 24px 0 0; text-align: left; }
+      .gara-title { font-size: 1.6rem; }
+
+      /* Partner */
+      .partner-layout { grid-template-columns: 1fr; gap: 32px; }
+      .partner-form { padding: 24px 20px; }
+      .partner-tiers-mini { display: none; } /* Nasconde i tier su mobile, mantiene il form */
+
+      /* Pilota */
+      .pilota-number { font-size: 3rem; }
+      .pilota-name { font-size: 2rem; }
+      .pilota-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .stat-value { font-size: 1.4rem; }
       #pilota::before { display: none; }
+
+      /* Footer */
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-links { flex-direction: column; gap: 20px; }
+      .logo-img-footer { height: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .footer-green-line { display: none; }
+
+      /* Form */
+      .form-row { grid-template-columns: 1fr; }
+      input, select, textarea { font-size: 16px; } /* Evita zoom iOS */
+    }
+
+    @media (max-width: 400px) {
+      .hero-title { font-size: 2.2rem; }
+      .section-header h2 { font-size: 1.6rem; }
+      nav { padding: 12px 16px; }
+      section { padding: 48px 16px; }
     }
   </style>
 </head>
@@ -794,7 +844,7 @@
           <p style="color: var(--green); margin-top: 24px; font-style: italic; font-size: 1.05rem;">"Oltre la competizione."</p>
         </div>
         <div class="manifesto-image">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142843_4aa67c88-99c4-4864-94bc-b459806cc884.png" alt="Cultura Motorsport in azione" loading="lazy"/>
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142843_4aa67c88-99c4-4864-94bc-b459806cc884_min.webp" alt="Cultura Motorsport in azione" loading="lazy"/>
         </div>
       </div>
     </div>
@@ -832,16 +882,16 @@
   <!-- GALLERY STRIP -->
   <div class="gallery-strip">
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122224_b22efc68-6da9-4124-9bdd-ce3c8fa05ba9.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122224_b22efc68-6da9-4124-9bdd-ce3c8fa05ba9_min.webp" alt="" loading="lazy"/>
     </div>
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122835_c4bf0fe8-0cc6-4a52-b51c-eb9a97f63e6c.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122835_c4bf0fe8-0cc6-4a52-b51c-eb9a97f63e6c_min.webp" alt="" loading="lazy"/>
     </div>
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_102033_19f566f1-78d5-425e-a225-4182e040a491.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_102033_19f566f1-78d5-425e-a225-4182e040a491_min.webp" alt="" loading="lazy"/>
     </div>
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122833_43659c43-a3c6-4762-9611-8ab475b24c21.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122833_43659c43-a3c6-4762-9611-8ab475b24c21_min.webp" alt="" loading="lazy"/>
     </div>
   </div>
 
@@ -852,7 +902,7 @@
     <div class="section-inner">
       <div class="pilota-grid">
         <div class="pilota-image">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_123003_87ee268f-cbfa-4eae-be9c-148123c30ecf.png" alt="Mirko Tiburzi" loading="lazy"/>
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_123003_87ee268f-cbfa-4eae-be9c-148123c30ecf_min.webp" alt="Mirko Tiburzi" loading="lazy"/>
         </div>
         <div class="pilota-info">
           <p class="label">Il Pilota</p>
@@ -994,16 +1044,16 @@
   <!-- GALLERY STRIP 2 -->
   <div class="gallery-strip">
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_123014_b1fb1749-6513-4bc9-894d-1615e2f65b87.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_123014_b1fb1749-6513-4bc9-894d-1615e2f65b87_min.webp" alt="" loading="lazy"/>
     </div>
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122829_0ea8e10f-e8ec-4af8-bdc8-2908c37f086e.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122829_0ea8e10f-e8ec-4af8-bdc8-2908c37f086e_min.webp" alt="" loading="lazy"/>
     </div>
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142834_60875fa3-b9f7-48a6-9969-f3a30dc6a25c.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_142834_60875fa3-b9f7-48a6-9969-f3a30dc6a25c_min.webp" alt="" loading="lazy"/>
     </div>
     <div class="gallery-strip-item">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122822_9e3ad44d-2473-467a-af04-f8dd501a53d0.png" alt="" loading="lazy"/>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35tDTBH5NVRTVFpjzCxNuu4ZMab/hf_20260612_122822_9e3ad44d-2473-467a-af04-f8dd501a53d0_min.webp" alt="" loading="lazy"/>
     </div>
   </div>
 
