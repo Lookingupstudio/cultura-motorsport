@@ -12,8 +12,8 @@
   <style>
     :root {
       --black: #000000;
-      --green: #1A3A8A;
-      --green-light: #2650A8;
+      --green: #4A90D9;
+      --green-light: #6AAEE8;
       --white: #ffffff;
       --grey-dark: #0a0a0a;
       --grey: #111111;
@@ -76,7 +76,7 @@
     }
     nav.scrolled {
       background: rgba(0,0,0,0.96);
-      border-bottom: 1px solid rgba(26,58,138,0.2);
+      border-bottom: 1px solid rgba(74,144,217,0.2);
     }
 
     .nav-cta {
@@ -204,8 +204,8 @@
     /* ─── MANIFESTO ─── */
     #manifesto {
       background: var(--grey-dark);
-      border-top: 1px solid rgba(26,58,138,0.2);
-      border-bottom: 1px solid rgba(26,58,138,0.2);
+      border-top: 1px solid rgba(74,144,217,0.2);
+      border-bottom: 1px solid rgba(74,144,217,0.2);
     }
     .manifesto-grid {
       display: grid;
@@ -242,7 +242,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border: 1px solid rgba(26,58,138,0.3);
+      border: 1px solid rgba(74,144,217,0.3);
       pointer-events: none;
     }
 
@@ -296,7 +296,7 @@
       font-size: clamp(8rem, 18vw, 16rem);
       font-weight: 600;
       letter-spacing: 0.05em;
-      color: rgba(26,58,138,0.04);
+      color: rgba(74,144,217,0.04);
       text-transform: uppercase;
       pointer-events: none;
       white-space: nowrap;
@@ -332,7 +332,7 @@
     .pilota-number {
       font-size: clamp(4rem, 8vw, 7rem);
       font-weight: 600;
-      color: rgba(26,58,138,0.2);
+      color: rgba(74,144,217,0.2);
       line-height: 1;
       margin-bottom: -10px;
     }
@@ -362,7 +362,7 @@
       gap: 24px;
     }
     .stat {
-      border-top: 1px solid rgba(26,58,138,0.3);
+      border-top: 1px solid rgba(74,144,217,0.3);
       padding-top: 16px;
     }
     .stat-value {
@@ -406,7 +406,7 @@
       gap: 60px;
       align-items: center;
       background: rgba(0,0,0,0.7);
-      border: 1px solid rgba(26,58,138,0.25);
+      border: 1px solid rgba(74,144,217,0.25);
       padding: 60px;
       backdrop-filter: blur(10px);
     }
@@ -449,7 +449,7 @@
     .gara-date-block {
       text-align: center;
       flex-shrink: 0;
-      border-left: 1px solid rgba(26,58,138,0.25);
+      border-left: 1px solid rgba(74,144,217,0.25);
       padding-left: 60px;
     }
     .gara-day {
@@ -575,7 +575,7 @@
     }
     input:focus, select:focus, textarea:focus {
       border-color: var(--green);
-      background: rgba(26,58,138,0.05);
+      background: rgba(74,144,217,0.05);
     }
     input::placeholder, textarea::placeholder {
       color: rgba(255,255,255,0.2);
@@ -612,7 +612,7 @@
     }
     .tier-radio:checked + .tier-radio-label {
       border-color: var(--green);
-      background: rgba(26,58,138,0.15);
+      background: rgba(74,144,217,0.15);
       color: var(--white);
     }
     .form-submit {
@@ -630,7 +630,7 @@
       transition: background 0.3s;
       margin-top: 8px;
     }
-    .form-submit:hover { background: #2650A8; }
+    .form-submit:hover { background: #6AAEE8; }
     .form-note {
       font-size: 0.65rem;
       color: rgba(255,255,255,0.25);
@@ -672,7 +672,7 @@
     /* ─── FOOTER ─── */
     footer {
       background: var(--black);
-      border-top: 1px solid rgba(26,58,138,0.2);
+      border-top: 1px solid rgba(74,144,217,0.2);
       padding: 60px 40px 40px;
     }
     .footer-inner {
@@ -769,7 +769,7 @@
 
       /* Gara */
       .gara-event { grid-template-columns: 1fr; gap: 32px; padding: 28px 24px; }
-      .gara-date-block { border-left: none; border-top: 1px solid rgba(26,58,138,0.25); padding: 24px 0 0; text-align: left; }
+      .gara-date-block { border-left: none; border-top: 1px solid rgba(74,144,217,0.25); padding: 24px 0 0; text-align: left; }
       .gara-title { font-size: 1.6rem; }
 
       /* Partner */
@@ -1111,7 +1111,7 @@
       e.preventDefault();
       const btn = e.target.querySelector('.form-submit');
       btn.textContent = 'Richiesta inviata ✓';
-      btn.style.background = '#1a2e6e';
+      btn.style.background = '#2e6aad';
       btn.disabled = true;
     }
 
