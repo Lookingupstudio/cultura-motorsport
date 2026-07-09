@@ -452,7 +452,7 @@
     .gallery-slider {
       position: relative;
       overflow: hidden;
-      height: 380px;
+      height: 480px;
       background: #000;
     }
     .gallery-slides-track {
@@ -989,7 +989,7 @@
       .valori-meta { display: none; }
 
       /* Gallery slider */
-      .gallery-slider { height: 260px; }
+      .gallery-slider { height: 320px; }
       .gallery-btn { width: 36px; height: 36px; font-size: 1.1rem; }
 
       /* Pilota */
@@ -1067,7 +1067,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-bg">
-      <video id="hero-video" autoplay muted loop playsinline preload="none" poster="foto/hero.jpg"></video>
+      <video id="hero-video" autoplay muted loop playsinline preload="none" poster="foto/hero.jpg" src="foto/CM2.mp4"></video>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1096,7 +1096,7 @@
           <p style="color: var(--green); margin-top: 24px; font-style: italic; font-size: 1.05rem;">"Oltre la competizione."</p>
         </div>
         <div class="manifesto-image">
-          <video id="manifesto-video" autoplay muted loop playsinline preload="none" poster="foto/manifesto.jpg"></video>
+          <video id="manifesto-video" autoplay muted loop playsinline preload="none" poster="foto/manifesto.jpg" src="foto/CM1.mp4"></video>
         </div>
       </div>
     </div>
@@ -1376,12 +1376,12 @@
   </div>
 
   <script>
-    // ─── VIDEO: carica solo su desktop ───
-    if (window.innerWidth > 768) {
+    // ─── VIDEO: rimuovi su mobile per non scaricare ───
+    if (window.innerWidth <= 768) {
       const hv = document.getElementById("hero-video");
-      if (hv) { hv.src = "foto/CM2.mp4"; hv.play().catch(()=>{}); }
+      if (hv) { hv.removeAttribute("src"); hv.load(); }
       const mv = document.getElementById("manifesto-video");
-      if (mv) { mv.src = "foto/CM1.mp4"; mv.play().catch(()=>{}); }
+      if (mv) { mv.removeAttribute("src"); mv.load(); }
     }
 
     // ─── NAV SCROLL ───
