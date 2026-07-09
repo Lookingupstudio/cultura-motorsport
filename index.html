@@ -1067,7 +1067,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-bg">
-      <video autoplay muted loop playsinline preload="metadata" poster="foto/hero.jpg" src="foto/CM2.mp4"></video>
+      <video id="hero-video" autoplay muted loop playsinline preload="none" poster="foto/hero.jpg"></video>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1096,7 +1096,7 @@
           <p style="color: var(--green); margin-top: 24px; font-style: italic; font-size: 1.05rem;">"Oltre la competizione."</p>
         </div>
         <div class="manifesto-image">
-          <video src="foto/CM1.mp4" autoplay muted loop playsinline preload="metadata" poster="foto/manifesto.jpg"></video>
+          <video id="manifesto-video" autoplay muted loop playsinline preload="none" poster="foto/manifesto.jpg"></video>
         </div>
       </div>
     </div>
@@ -1376,6 +1376,14 @@
   </div>
 
   <script>
+    // ─── VIDEO: carica solo su desktop ───
+    if (window.innerWidth > 768) {
+      const hv = document.getElementById("hero-video");
+      if (hv) { hv.src = "foto/CM2.mp4"; hv.play().catch(()=>{}); }
+      const mv = document.getElementById("manifesto-video");
+      if (mv) { mv.src = "foto/CM1.mp4"; mv.play().catch(()=>{}); }
+    }
+
     // ─── NAV SCROLL ───
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
