@@ -1067,7 +1067,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-bg">
-      <video id="hero-video" autoplay muted loop playsinline preload="none" poster="foto/hero.jpg" src="foto/CM2.mp4"></video>
+      <video id="hero-video" autoplay muted loop playsinline preload="none" poster="foto/hero.jpg"></video>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1096,7 +1096,7 @@
           <p style="color: var(--green); margin-top: 24px; font-style: italic; font-size: 1.05rem;">"Oltre la competizione."</p>
         </div>
         <div class="manifesto-image">
-          <video id="manifesto-video" autoplay muted loop playsinline preload="none" poster="foto/manifesto.jpg" src="foto/CM1.mp4"></video>
+          <video id="manifesto-video" autoplay muted loop playsinline preload="none" poster="foto/manifesto.jpg"></video>
         </div>
       </div>
     </div>
@@ -1376,13 +1376,14 @@
   </div>
 
   <script>
-    // ─── VIDEO: rimuovi su mobile per non scaricare ───
-    if (window.innerWidth <= 768) {
+    // ─── VIDEO: mobile usa versione compressa, desktop full quality ───
+    (function() {
+      const mobile = window.innerWidth <= 768;
       const hv = document.getElementById("hero-video");
-      if (hv) { hv.removeAttribute("src"); hv.load(); }
+      if (hv) { hv.src = mobile ? "foto/CM2_mobile.mp4" : "foto/CM2.mp4"; hv.play().catch(()=>{}); }
       const mv = document.getElementById("manifesto-video");
-      if (mv) { mv.removeAttribute("src"); mv.load(); }
-    }
+      if (mv) { mv.src = mobile ? "foto/CM1_mobile.mp4" : "foto/CM1.mp4"; mv.play().catch(()=>{}); }
+    })();
 
     // ─── NAV SCROLL ───
     const navbar = document.getElementById('navbar');
