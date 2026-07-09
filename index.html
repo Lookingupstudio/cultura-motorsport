@@ -173,6 +173,7 @@
       position: absolute;
       inset: 0;
       overflow: hidden;
+      background: url('foto/hero.jpg') center/cover no-repeat;
     }
     .hero-bg video {
       width: 100%;
@@ -289,20 +290,10 @@
       font-style: italic;
     }
     .manifesto-text p {
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.82);
       font-size: 1rem;
       margin-bottom: 16px;
-    }
-    .manifesto-reel {
-      margin-top: 36px;
-    }
-    .manifesto-reel video {
-      width: 100%;
-      max-width: 260px;
-      aspect-ratio: 9/16;
-      object-fit: cover;
-      display: block;
-      border: 1px solid rgba(74,144,217,0.3);
+      line-height: 1.85;
     }
     .manifesto-image {
       position: relative;
@@ -344,6 +335,28 @@
       margin-bottom: 64px;
       gap: 40px;
     }
+    .valori-live {
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .valori-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: blink 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
     .valori-header-row h2 {
       font-size: clamp(2.4rem, 5vw, 4rem);
       line-height: 1;
@@ -353,13 +366,33 @@
       color: var(--green);
       font-style: normal;
     }
-    .valori-eyebrow-right {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
+    .valori-meta {
+      display: flex;
+      gap: 32px;
+      align-items: flex-end;
+      padding-bottom: 4px;
+    }
+    .valori-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      border-top: 1px solid rgba(74,144,217,0.35);
+      padding-top: 12px;
+      min-width: 64px;
+    }
+    .valori-meta-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
       color: rgba(255,255,255,0.3);
       text-transform: uppercase;
-      white-space: nowrap;
-      padding-bottom: 6px;
+    }
+    .valori-meta-val {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      line-height: 1;
     }
     .valori-grid {
       display: grid;
@@ -381,7 +414,7 @@
       bottom: -20px;
       font-size: 9rem;
       font-weight: 600;
-      color: rgba(74,144,217,0.06);
+      color: rgba(74,144,217,0.07);
       line-height: 1;
       letter-spacing: -0.05em;
       pointer-events: none;
@@ -411,9 +444,121 @@
     }
     .valore-card p {
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.55);
       line-height: 1.85;
     }
+
+    /* ─── GALLERY SLIDER ─── */
+    .gallery-slider {
+      position: relative;
+      overflow: hidden;
+      height: 380px;
+      background: #000;
+    }
+    .gallery-slides-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .gallery-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      overflow: hidden;
+      cursor: zoom-in;
+      position: relative;
+    }
+    .gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82) contrast(1.08);
+      transition: filter 0.4s ease;
+    }
+    .gallery-slide:hover img {
+      filter: brightness(0.96) contrast(1.08);
+    }
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(74,144,217,0.5);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, border-color 0.25s;
+      line-height: 1;
+    }
+    .gallery-btn:hover {
+      background: rgba(74,144,217,0.3);
+      border-color: var(--green);
+    }
+    .gallery-prev { left: 16px; }
+    .gallery-next { right: 16px; }
+    .gallery-counter {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.5);
+      z-index: 10;
+    }
+    .gallery-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+    .gallery-dot {
+      width: 28px;
+      height: 2px;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: background 0.25s;
+      border: none;
+    }
+    .gallery-dot.active { background: var(--green); }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.96);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 94vw;
+      max-height: 90vh;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 2.2rem;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--green); }
 
     /* ─── PILOTA ─── */
     #pilota {
@@ -450,6 +595,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top center;
       filter: brightness(0.75) contrast(1.15) grayscale(15%);
     }
     .pilota-image::before {
@@ -463,13 +609,6 @@
       z-index: 2;
     }
     .pilota-info { position: relative; z-index: 1; }
-    .pilota-number {
-      font-size: clamp(4rem, 8vw, 7rem);
-      font-weight: 600;
-      color: rgba(74,144,217,0.2);
-      line-height: 1;
-      margin-bottom: -10px;
-    }
     .pilota-name {
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 600;
@@ -525,8 +664,8 @@
       background-image: url('foto/gara_bg.jpg');
       background-size: cover;
       background-position: center;
-      opacity: 0.15;
-      filter: grayscale(40%);
+      opacity: 0.35;
+      filter: grayscale(30%);
     }
     .gara-inner {
       position: relative;
@@ -539,7 +678,7 @@
       grid-template-columns: 1fr auto;
       gap: 60px;
       align-items: center;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.65);
       border: 1px solid rgba(74,144,217,0.25);
       padding: 60px;
       backdrop-filter: blur(10px);
@@ -722,33 +861,6 @@
       resize: vertical;
       min-height: 110px;
     }
-    .form-tier-select {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-    .tier-radio {
-      display: none;
-    }
-    .tier-radio-label {
-      display: block;
-      padding: 12px 8px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-family: 'STIX Two Text', serif;
-      color: rgba(255,255,255,0.5);
-    }
-    .tier-radio:checked + .tier-radio-label {
-      border-color: var(--green);
-      background: rgba(74,144,217,0.15);
-      color: var(--white);
-    }
     .form-submit {
       width: 100%;
       background: var(--green);
@@ -771,72 +883,6 @@
       margin-top: 16px;
       line-height: 1.6;
       letter-spacing: 0.05em;
-    }
-
-    @media (max-width: 768px) {
-      .partner-layout { grid-template-columns: 1fr; gap: 40px; }
-      .form-row { grid-template-columns: 1fr; }
-      .form-tier-select { grid-template-columns: 1fr; }
-      .partner-form { padding: 28px 20px; }
-    }
-
-    /* ─── REEL ─── */
-    #reel {
-      background: var(--black);
-      padding: 100px 40px;
-    }
-    .reel-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .reel-video-wrap {
-      position: relative;
-      width: 100%;
-      max-width: 560px;
-      margin: 48px auto 0;
-      aspect-ratio: 9/16;
-      overflow: hidden;
-      background: #000;
-    }
-    .reel-video-wrap video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .reel-video-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(74,144,217,0.3);
-      pointer-events: none;
-    }
-    @media (max-width: 768px) {
-      #reel { padding: 56px 20px; }
-      .reel-video-wrap { max-width: 100%; }
-    }
-
-    /* ─── GALLERY STRIP ─── */
-    .gallery-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      height: 280px;
-      overflow: hidden;
-    }
-    .gallery-strip-item {
-      overflow: hidden;
-      position: relative;
-    }
-    .gallery-strip-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.7) grayscale(20%) contrast(1.1);
-      transition: transform 0.6s ease, filter 0.4s;
-    }
-    .gallery-strip-item:hover img {
-      transform: scale(1.05);
-      filter: brightness(0.9) grayscale(0%) contrast(1.1);
     }
 
     /* ─── FOOTER ─── */
@@ -921,23 +967,42 @@
       section { padding: 56px 20px; }
       .section-inner { max-width: 100%; }
 
-      /* Hero */
+      /* Hero — video nascosto su mobile, usa immagine statica */
+      .hero-bg video { display: none; }
       .hero-content { padding: 0 20px 56px; }
       .hero-title { font-size: 2.8rem; letter-spacing: 0.06em; }
       .hero-subtitle { font-size: 1.1rem; }
       .hero-desc { font-size: 0.88rem; }
       .hero-scroll { display: none; }
 
-      /* Grids → colonna singola */
-      .manifesto-grid,
-      .pilota-grid { grid-template-columns: 1fr; gap: 32px; }
-      .manifesto-image { aspect-ratio: 16/9; }
-      .pilota-image { aspect-ratio: 4/3; }
+      /* Manifesto */
+      .manifesto-grid { grid-template-columns: 1fr; gap: 32px; }
+      .manifesto-image {
+        aspect-ratio: 9/16;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      /* Valori */
       .valori-grid { grid-template-columns: 1fr; gap: 2px; }
       .valore-card { padding: 32px 24px; }
+      .valori-meta { display: none; }
 
-      /* Gallery strip: 2 colonne */
-      .gallery-strip { grid-template-columns: repeat(2, 1fr); height: 200px; }
+      /* Gallery slider */
+      .gallery-slider { height: 260px; }
+      .gallery-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+
+      /* Pilota */
+      .pilota-grid { grid-template-columns: 1fr; gap: 32px; }
+      .pilota-image {
+        aspect-ratio: 3/4;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .pilota-name { font-size: 2rem; }
+      .pilota-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .stat-value { font-size: 1.4rem; }
+      #pilota::before { display: none; }
 
       /* Gara */
       .gara-event { grid-template-columns: 1fr; gap: 32px; padding: 28px 24px; }
@@ -947,14 +1012,7 @@
       /* Partner */
       .partner-layout { grid-template-columns: 1fr; gap: 32px; }
       .partner-form { padding: 24px 20px; }
-      .partner-tiers-mini { display: none; } /* Nasconde i tier su mobile, mantiene il form */
-
-      /* Pilota */
-      .pilota-number { font-size: 3rem; }
-      .pilota-name { font-size: 2rem; }
-      .pilota-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-      .stat-value { font-size: 1.4rem; }
-      #pilota::before { display: none; }
+      .partner-tiers-mini { display: none; }
 
       /* Footer */
       .footer-top { flex-direction: column; gap: 32px; }
@@ -965,7 +1023,7 @@
 
       /* Form */
       .form-row { grid-template-columns: 1fr; }
-      input, select, textarea { font-size: 16px; } /* Evita zoom iOS */
+      input, select, textarea { font-size: 16px; }
     }
 
     @media (max-width: 400px) {
@@ -1009,7 +1067,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-bg">
-      <video autoplay muted loop playsinline src="foto/CM2.mp4"></video>
+      <video autoplay muted loop playsinline preload="metadata" poster="foto/hero.jpg" src="foto/CM2.mp4"></video>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1038,7 +1096,7 @@
           <p style="color: var(--green); margin-top: 24px; font-style: italic; font-size: 1.05rem;">"Oltre la competizione."</p>
         </div>
         <div class="manifesto-image">
-          <video src="foto/CM1.mp4" autoplay muted loop playsinline></video>
+          <video src="foto/CM1.mp4" autoplay muted loop playsinline preload="metadata" poster="foto/manifesto.jpg"></video>
         </div>
       </div>
     </div>
@@ -1050,8 +1108,24 @@
   <section id="valori">
     <div class="section-inner">
       <div class="valori-header-row">
-        <h2>CIVM<br><em>2026</em></h2>
-        <span class="valori-eyebrow-right">La nostra essenza · Campionato Italiano Velocità in Montagna</span>
+        <div>
+          <p class="valori-live"><span class="valori-live-dot"></span> Live — Stagione CIVM 2026</p>
+          <h2>La Nostra<br><em>Essenza</em></h2>
+        </div>
+        <div class="valori-meta">
+          <div class="valori-meta-item">
+            <span class="valori-meta-label">Campionato</span>
+            <span class="valori-meta-val">CIVM</span>
+          </div>
+          <div class="valori-meta-item">
+            <span class="valori-meta-label">Stagione</span>
+            <span class="valori-meta-val">2026</span>
+          </div>
+          <div class="valori-meta-item">
+            <span class="valori-meta-label">Auto</span>
+            <span class="valori-meta-val">106</span>
+          </div>
+        </div>
       </div>
       <div class="valori-grid">
         <div class="valore-card" data-num="01">
@@ -1076,20 +1150,26 @@
     </div>
   </section>
 
-  <!-- GALLERY STRIP -->
-  <div class="gallery-strip">
-    <div class="gallery-strip-item">
-      <img src="foto/g1_new1.jpg" alt="" loading="lazy"/>
+  <!-- GALLERY SLIDER 1 -->
+  <div class="gallery-slider" id="gs1">
+    <div class="gallery-slides-track">
+      <div class="gallery-slide" onclick="openLightbox('foto/g1_new1.jpg')">
+        <img src="foto/g1_new1.jpg" alt="" loading="lazy"/>
+      </div>
+      <div class="gallery-slide" onclick="openLightbox('foto/g1_new2.jpg')">
+        <img src="foto/g1_new2.jpg" alt="" loading="lazy"/>
+      </div>
+      <div class="gallery-slide" onclick="openLightbox('foto/g1_new3.jpg')">
+        <img src="foto/g1_new3.jpg" alt="" loading="lazy"/>
+      </div>
+      <div class="gallery-slide" onclick="openLightbox('foto/g1_new4.jpg')">
+        <img src="foto/g1_new4.jpg" alt="" loading="lazy"/>
+      </div>
     </div>
-    <div class="gallery-strip-item">
-      <img src="foto/g1_new2.jpg" alt="" loading="lazy"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="foto/g1_new3.jpg" alt="" loading="lazy"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="foto/g1_new4.jpg" alt="" loading="lazy"/>
-    </div>
+    <button class="gallery-btn gallery-prev" onclick="moveSlider('gs1',-1)">&#8249;</button>
+    <button class="gallery-btn gallery-next" onclick="moveSlider('gs1',1)">&#8250;</button>
+    <div class="gallery-dots" id="gs1-dots"></div>
+    <div class="gallery-counter" id="gs1-counter">1 / 4</div>
   </div>
 
   <div class="green-divider"></div>
@@ -1103,7 +1183,6 @@
         </div>
         <div class="pilota-info">
           <p class="label">Il Pilota</p>
-          <p class="pilota-number">#___</p>
           <h2 class="pilota-name">Mirko<br>Tiburzi</h2>
           <p class="pilota-car">Peugeot 106 S16 · CIVM 2026</p>
           <p class="pilota-bio">Mirko Tiburzi è il volto in pista di Cultura Motorsport per la stagione 2026. Al volante della Peugeot 106, porta sulle strade di montagna italiane un approccio che unisce tecnica e carattere — dove ogni curva è una firma.</p>
@@ -1173,8 +1252,6 @@
   <!-- PARTNER -->
   <section id="partner">
     <div class="partner-layout">
-
-      <!-- SINISTRA: info tiers -->
       <div class="partner-left">
         <p class="label">Partnership</p>
         <h2>Diventa Parte<br>del Progetto</h2>
@@ -1203,57 +1280,55 @@
           </div>
         </div>
       </div>
-
-      <!-- DESTRA: form -->
       <div class="partner-form">
         <p class="form-title">Richiesta di Partnership</p>
         <p class="form-subtitle">Compila il form — ti risponderemo entro 48 ore.</p>
-
         <form action="#" method="POST" onsubmit="handleSubmit(event)">
           <div class="form-group">
             <label for="nome">Nome e Cognome *</label>
             <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required/>
           </div>
-
           <div class="form-group">
             <label for="email">Email *</label>
             <input type="email" id="email" name="email" placeholder="mario@azienda.it" required/>
           </div>
-
           <div class="form-group">
             <label for="azienda">Azienda / Brand</label>
             <input type="text" id="azienda" name="azienda" placeholder="Nome dell'azienda"/>
           </div>
-
           <div class="form-group">
             <label for="messaggio">Come possiamo collaborare?</label>
             <textarea id="messaggio" name="messaggio" placeholder="Raccontaci brevemente il tuo brand e cosa ti interessa..."></textarea>
           </div>
-
           <button type="submit" class="form-submit">Invia Richiesta →</button>
           <p class="form-note">Risponderemo entro 48 ore lavorative.</p>
         </form>
       </div>
-
     </div>
   </section>
 
   <div class="green-divider"></div>
 
-  <!-- GALLERY STRIP 2 -->
-  <div class="gallery-strip">
-    <div class="gallery-strip-item">
-      <img src="foto/g2_1.jpg" alt="" loading="lazy"/>
+  <!-- GALLERY SLIDER 2 -->
+  <div class="gallery-slider" id="gs2">
+    <div class="gallery-slides-track">
+      <div class="gallery-slide" onclick="openLightbox('foto/g2_1.jpg')">
+        <img src="foto/g2_1.jpg" alt="" loading="lazy"/>
+      </div>
+      <div class="gallery-slide" onclick="openLightbox('foto/g2_2.jpg')">
+        <img src="foto/g2_2.jpg" alt="" loading="lazy"/>
+      </div>
+      <div class="gallery-slide" onclick="openLightbox('foto/g2_3.jpg')">
+        <img src="foto/g2_3.jpg" alt="" loading="lazy"/>
+      </div>
+      <div class="gallery-slide" onclick="openLightbox('foto/g2_4.jpg')">
+        <img src="foto/g2_4.jpg" alt="" loading="lazy"/>
+      </div>
     </div>
-    <div class="gallery-strip-item">
-      <img src="foto/g2_2.jpg" alt="" loading="lazy"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="foto/g2_3.jpg" alt="" loading="lazy"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="foto/g2_4.jpg" alt="" loading="lazy"/>
-    </div>
+    <button class="gallery-btn gallery-prev" onclick="moveSlider('gs2',-1)">&#8249;</button>
+    <button class="gallery-btn gallery-next" onclick="moveSlider('gs2',1)">&#8250;</button>
+    <div class="gallery-dots" id="gs2-dots"></div>
+    <div class="gallery-counter" id="gs2-counter">1 / 4</div>
   </div>
 
   <!-- FOOTER -->
@@ -1294,14 +1369,20 @@
     </div>
   </footer>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
+  </div>
+
   <script>
-    // Nav scroll
+    // ─── NAV SCROLL ───
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Mobile menu
+    // ─── MOBILE MENU ───
     function openMobileMenu() {
       document.getElementById('mobileMenu').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1311,8 +1392,74 @@
       document.body.style.overflow = '';
     }
 
+    // ─── GALLERY SLIDER ───
+    const sliderState = {};
 
-    // Form submit
+    function initSlider(id) {
+      const slider = document.getElementById(id);
+      if (!slider) return;
+      const slides = slider.querySelectorAll('.gallery-slide');
+      const total = slides.length;
+      sliderState[id] = { current: 0, total };
+
+      // Crea dots
+      const dotsEl = document.getElementById(id + '-dots');
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('div');
+        d.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', (e) => { e.stopPropagation(); goToSlide(id, i); });
+        dotsEl.appendChild(d);
+      }
+
+      // Touch/swipe
+      let startX = 0;
+      slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      slider.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) moveSlider(id, diff > 0 ? 1 : -1);
+      });
+
+      updateSlider(id);
+    }
+
+    function moveSlider(id, dir) {
+      const s = sliderState[id];
+      s.current = (s.current + dir + s.total) % s.total;
+      updateSlider(id);
+    }
+
+    function goToSlide(id, index) {
+      sliderState[id].current = index;
+      updateSlider(id);
+    }
+
+    function updateSlider(id) {
+      const slider = document.getElementById(id);
+      const s = sliderState[id];
+      slider.querySelector('.gallery-slides-track').style.transform = `translateX(-${s.current * 100}%)`;
+      slider.querySelectorAll('.gallery-dot').forEach((d, i) => d.classList.toggle('active', i === s.current));
+      const counter = document.getElementById(id + '-counter');
+      if (counter) counter.textContent = `${s.current + 1} / ${s.total}`;
+    }
+
+    initSlider('gs1');
+    initSlider('gs2');
+
+    // ─── LIGHTBOX ───
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ─── FORM ───
     function handleSubmit(e) {
       e.preventDefault();
       const btn = e.target.querySelector('.form-submit');
@@ -1321,7 +1468,7 @@
       btn.disabled = true;
     }
 
-    // Intersection observer for fade-in
+    // ─── FADE-IN ───
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1331,7 +1478,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.valore-card, .tier-card, .gara-event, .pilota-grid').forEach(el => {
+    document.querySelectorAll('.valore-card, .gara-event, .pilota-grid').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(24px)';
       el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
